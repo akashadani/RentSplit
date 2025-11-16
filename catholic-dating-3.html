@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatholicHeart - Verified Catholic Profiles</title>
+    <script src="https://cdn.logrocket.com/LogRocket.min.js" crossorigin="anonymous"></script>
+    <script>window.LogRocket && window.LogRocket.init('dhqzb7/catholic-heart');</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4a1942 0%, #6b2d5c 50%, #8b3a62 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+            background: linear-gradient(45deg, #fff, #f8b4d9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(100, 255, 218, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            color: #f8b4d9;
+        }
+
+        .sparkle {
+            font-size: 1rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"], input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"], input[type="text"], input[type="number"]::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        input[type="email"], input[type="text"], input[type="number"]:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #f8b4d9;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px 20px;
+            background: #f8b4d9;
+            color: #0f2027;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .safety-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .safety-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .safety-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .safety-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid rgba(248, 180, 217, 0.3);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23f8b4d9' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        select:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #f8b4d9;
+        }
+
+        select option {
+            background: #4a1942;
+            color: white;
+        }
+
+
+
+        .age-container {
+            margin-bottom: 20px;
+        }
+
+        .age-label {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        #age-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f8b4d9;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(248, 180, 217, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f8b4d9;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(248, 180, 217, 0.4);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f8b4d9;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(248, 180, 217, 0.4);
+        }
+
+        .gender-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .gender-btn {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(248, 180, 217, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gender-btn:hover {
+            background: rgba(248, 180, 217, 0.1);
+            border-color: #f8b4d9;
+            transform: translateY(-2px);
+        }
+
+        .gender-btn.selected {
+            background: rgba(248, 180, 217, 0.2);
+            border-color: #f8b4d9;
+            box-shadow: 0 4px 15px rgba(248, 180, 217, 0.3);
+        }
+
+        .gender-icon {
+            font-size: 2rem;
+            color: #f8b4d9;
+        }
+
+        .progress-dots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(248, 180, 217, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #f8b4d9;
+            transform: scale(1.2);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-step.active {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: #f8b4d9;
+            color: #4a1942;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(248, 180, 217, 0.3);
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(248, 180, 217, 0.4);
+        }
+
+        .next-btn:active {
+            transform: translateY(0);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #f8b4d9;
+            color: #0f2027;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 20px rgba(100, 255, 218, 0.4);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CatholicHeart</div>
+        <div class="tagline">Where faith meets love</div>
+        <div class="badge">
+            <span class="sparkle">✨</span>
+            Verified Profiles
+        </div>
+
+        <h1>Every profile is verified Catholic</h1>
+        <p>Date with confidence knowing every member has been verified as a practicing Catholic. Real faith. Real people. Real safety.</p>
+
+        <div class="progress-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <form class="email-form" id="email-form">
+            <!-- Step 1 -->
+            <div class="form-step active" data-step="1">
+                <input type="text" name="name" placeholder="First Name" required>
+                <button type="button" class="next-btn" onclick="nextStep()">Next →</button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="form-step" data-step="2">
+                <div class="age-container">
+                    <label class="age-label">Age: <span id="age-value">25</span></label>
+                    <input type="range" name="age" id="age-slider" min="18" max="99" value="25" required>
+                </div>
+                <div class="gender-container">
+                    <input type="hidden" name="gender" id="gender-input" required>
+                    <button type="button" class="gender-btn" data-gender="male" onclick="selectGender('male')">
+                        <span class="gender-icon">♂</span>
+                        Male
+                    </button>
+                    <button type="button" class="gender-btn" data-gender="female" onclick="selectGender('female')">
+                        <span class="gender-icon">♀</span>
+                        Female
+                    </button>
+                </div>
+                <button type="button" class="next-btn" onclick="nextStep()">Next →</button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="form-step" data-step="3">
+                <input type="text" name="city" placeholder="City" required>
+                <input type="text" name="state" placeholder="State" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <button type="submit">Join Now</button>
+            </div>
+        </form>
+
+        <script>
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbybDi6B3tkJt-KZArKRgrqPvpV0M1tm07c8Kmbs6Yft3MnwNGWUhiAC7W9JHrqC-fts/exec';
+
+
+
+        // Age slider
+        const ageSlider = document.getElementById('age-slider');
+        const ageValue = document.getElementById('age-value');
+        
+        if (ageSlider) {
+            ageSlider.addEventListener('input', function() {
+                ageValue.textContent = this.value;
+            });
+        }
+
+        // Gender selection
+        function selectGender(gender) {
+            document.getElementById('gender-input').value = gender;
+            document.querySelectorAll('.gender-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            document.querySelector(`[data-gender="${gender}"]`).classList.add('selected');
+        }
+
+        let currentStep = 1;
+
+        function nextStep() {
+            const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+            const inputs = currentStepEl.querySelectorAll('input, select');
+            
+            // Validate current step
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    valid = false;
+                }
+            });
+            
+            // Check gender selection for step 2
+            if (currentStep === 2) {
+                const genderInput = document.getElementById('gender-input');
+                if (!genderInput.value) {
+                    alert('Please select your gender');
+                    valid = false;
+                }
+            }
+
+            if (!valid) return;
+
+            // Move to next step
+            currentStepEl.classList.remove('active');
+            currentStep++;
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+            
+            // Update progress dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                if (index < currentStep) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+
+            document.getElementById('email-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                                const formData = new FormData(this);
+                const name = formData.get('name').trim();
+                const age = formData.get('age');
+                const gender = formData.get('gender');
+                const city = formData.get('city').trim();
+                const state = formData.get('state').trim();
+                const email = formData.get('email').trim();
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+
+                button.textContent = 'Submitting...';
+                button.disabled = true;
+
+                // Create hidden form for submission
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = GOOGLE_SCRIPT_URL;
+                form.target = 'declutr-iframe';
+                form.style.display = 'none';
+
+                const emailField = document.createElement('input');
+                emailField.type = 'hidden';
+                emailField.name = 'email';
+                emailField.value = email;
+                form.appendChild(emailField);
+
+                const nameField = document.createElement('input');
+                nameField.type = 'hidden';
+                nameField.name = 'name';
+                nameField.value = name;
+                form.appendChild(nameField);
+
+                const ageField = document.createElement('input');
+                ageField.type = 'hidden';
+                ageField.name = 'age';
+                ageField.value = age;
+                form.appendChild(ageField);
+
+                const genderField = document.createElement('input');
+                genderField.type = 'hidden';
+                genderField.name = 'gender';
+                genderField.value = gender;
+                form.appendChild(genderField);
+
+                const cityField = document.createElement('input');
+                cityField.type = 'hidden';
+                cityField.name = 'city';
+                cityField.value = city;
+                form.appendChild(cityField);
+
+                const stateField = document.createElement('input');
+                stateField.type = 'hidden';
+                stateField.name = 'state';
+                stateField.value = state;
+                form.appendChild(stateField);
+
+                const sourceField = document.createElement('input');
+                sourceField.type = 'hidden';
+                sourceField.name = 'source';
+                sourceField.value = 'landing-3-verified';
+                form.appendChild(sourceField);
+
+                const projectField = document.createElement('input');
+                projectField.type = 'hidden';
+                projectField.name = 'project';
+                projectField.value = 'catholic-dating';
+                form.appendChild(projectField);
+
+                // Create hidden iframe
+                let iframe = document.getElementById('declutr-iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.name = 'declutr-iframe';
+                    iframe.id = 'declutr-iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+
+                // Show toast notification
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    document.getElementById('email-form').reset();
+
+                    // Create and show toast
+                    const toast = document.createElement('div');
+                    toast.className = 'toast';
+                    toast.textContent = "We'll be in touch soon!";
+                    document.body.appendChild(toast);
+
+                    setTimeout(() => toast.classList.add('show'), 10);
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        setTimeout(() => toast.remove(), 300);
+                    }, 3000);
+                }, 500);
+            });
+        </script>
+    </div>
+</body>
+</html>
